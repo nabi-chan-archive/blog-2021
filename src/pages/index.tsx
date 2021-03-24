@@ -2,6 +2,7 @@ import React from "react";
 import { GetServerSideProps, NextPage } from "next";
 import prisma from "../lib/prisma";
 import { Post } from "../constants/type";
+import Container from "../layouts/Container";
 
 interface Props {
   posts: Post[];
@@ -23,7 +24,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (ctx) => {
 
 const Home: NextPage<Props> = ({ posts }) => {
   return (
-    <div>
+    <Container>
       <h1>Feed</h1>
 
       {posts.map((post) => (
@@ -33,7 +34,7 @@ const Home: NextPage<Props> = ({ posts }) => {
           <b>{post.createdAt.toString()}</b>
         </div>
       ))}
-    </div>
+    </Container>
   );
 };
 
