@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NextPage } from "next";
 import styled from "styled-components";
 import Container from "../layouts/Container";
+import { useRouter } from "next/router";
 
 const Form = styled.form`
   display: grid;
@@ -36,6 +37,7 @@ const Label = styled.label`
 const Create: NextPage = () => {
   const [title, setTitle] = useState<string>("");
   const [body, setBody] = useState<string>("");
+  const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -55,6 +57,7 @@ const Create: NextPage = () => {
         alert("작성에 성공했습니다!");
         setTitle("");
         setBody("");
+        await router.push("/");
       }
     } catch (e) {
       alert("글을 작성하는 중 오류가 발생했습니다 " + e.response.status);
