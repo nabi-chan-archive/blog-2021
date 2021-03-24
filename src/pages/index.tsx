@@ -3,7 +3,7 @@ import { GetServerSideProps, NextPage } from "next";
 import prisma from "../lib/prisma";
 import { Post } from "../constants/type";
 import Container from "../layouts/Container";
-import PageLink from "../components/PageLink";
+import PostCard from "../components/PostCard";
 
 interface Props {
   posts: Post[];
@@ -29,11 +29,7 @@ const Home: NextPage<Props> = ({ posts }) => {
       <h1>Feed</h1>
 
       {posts.map((post) => (
-        <PageLink href={`/detail/${post.id}`} key={post.id}>
-          <h2>{post.title}</h2>
-          <p>{post.body}</p>
-          <b>{post.createdAt.toString()}</b>
-        </PageLink>
+        <PostCard key={post.id} post={post} />
       ))}
     </Container>
   );
