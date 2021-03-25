@@ -3,6 +3,7 @@ import { NextPage } from "next";
 import styled from "styled-components";
 import Container from "../layouts/Container";
 import { useRouter } from "next/router";
+import Header from "../components/Header";
 
 const Form = styled.form`
   display: grid;
@@ -65,35 +66,38 @@ const Create: NextPage = () => {
   };
 
   return (
-    <Container>
-      <h1>Post 만들기</h1>
+    <>
+      <Header />
+      <Container>
+        <h1>Post 만들기</h1>
 
-      <Form onSubmit={handleSubmit}>
-        <Label>
-          <span>제목</span>
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            name="title"
-            placeholder={"제목을 입력하세요."}
-          />
-        </Label>
+        <Form onSubmit={handleSubmit}>
+          <Label>
+            <span>제목</span>
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              name="title"
+              placeholder={"제목을 입력하세요."}
+            />
+          </Label>
 
-        <Label>
-          <span>본문</span>
-          <textarea
-            value={body}
-            onChange={(e) => setBody(e.target.value)}
-            name="body"
-            placeholder={"내용을 입력하세요."}
-          />
-        </Label>
+          <Label>
+            <span>본문</span>
+            <textarea
+              value={body}
+              onChange={(e) => setBody(e.target.value)}
+              name="body"
+              placeholder={"내용을 입력하세요."}
+            />
+          </Label>
 
-        <button type={"submit"}>저장하기</button>
-        <button type={"reset"}>리셋</button>
-      </Form>
-    </Container>
+          <button type={"submit"}>저장하기</button>
+          <button type={"reset"}>리셋</button>
+        </Form>
+      </Container>
+    </>
   );
 };
 
