@@ -9,6 +9,7 @@ import { Container, Nav, Row } from "react-bootstrap";
 import Link from "next/link";
 import { useSession } from "next-auth/client";
 import { formatDate } from "../../lib/utils";
+import { useRouter } from "next/router";
 
 interface Props {
   postId: number;
@@ -43,6 +44,27 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 const Detail: NextPage<Props> = ({ postId, post }) => {
   const [session, loading] = useSession();
   const isUser = session && !loading;
+  const { push } = useRouter();
+
+  async function deletePost() {
+    try {
+      const confirm = window.confirm("정말로 삭제하시겠습니까?");
+
+      if (!confirm) return;
+
+      const result = await fetch(`/api/post/${postId}`, {
+        method: "DELETE",
+      });
+
+      if (result) {
+        alert("글 삭제에 성공했습니다.");
+        await push("/");
+      }
+    } catch (e) {
+      alert("글을 삭제하는 과정에서 오류가 발생했습니다.");
+      console.error(e);
+    }
+  }
 
   return (
     <>
@@ -69,7 +91,9 @@ const Detail: NextPage<Props> = ({ postId, post }) => {
                 </Nav.Item>
                 <Nav.Item>
                   <Link href={"#"}>
-                    <Nav.Link href={"#"}>삭제하기</Nav.Link>
+                    <Nav.Link onClick={deletePost} href={"#"}>
+                      삭제하기
+                    </Nav.Link>
                   </Link>
                 </Nav.Item>
               </Nav>
