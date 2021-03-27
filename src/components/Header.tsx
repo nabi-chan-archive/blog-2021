@@ -39,6 +39,11 @@ const Header = () => {
                 <Nav.Link href={"/create"}>{"글쓰기"}</Nav.Link>
               </Link>
             ) : null}
+            {isUser ? (
+              <Link href={"/logout"}>
+                <Nav.Link href={"/logout"}>{"로그아웃"}</Nav.Link>
+              </Link>
+            ) : null}
           </Nav>
         </Navbar.Collapse>
       </Container>
