@@ -8,6 +8,7 @@ import PostContent from "../../components/post/Content";
 import { Container, Nav, Row } from "react-bootstrap";
 import Link from "next/link";
 import { useSession } from "next-auth/client";
+import { formatDate } from "../../lib/utils";
 
 interface Props {
   postId: number;
@@ -49,7 +50,7 @@ const Detail: NextPage<Props> = ({ postId, post }) => {
       <Container>
         <PostHeader>
           <h2>{post.title}</h2>
-          <h6>{post.createdAt.toString()}</h6>
+          <h6>{formatDate(post.createdAt)}</h6>
           <Row>
             <Nav className="mr-auto" activeKey={"/"}>
               <Nav.Item>
