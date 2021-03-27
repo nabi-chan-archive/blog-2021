@@ -1,5 +1,6 @@
 import prisma from "../../../lib/prisma";
 import { NextApiHandler } from "next";
+import { Post } from "../../../constants/type";
 
 const handler: NextApiHandler = async (req, res) => {
   const {
@@ -30,9 +31,7 @@ async function deletePost(id: string | string[]) {
   });
 }
 
-async function updatePost(id: string | string[], data: string) {
-  const { title, body } = JSON.parse(data);
-
+async function updatePost(id: string | string[], { title, body }: Post) {
   return await prisma.post.update({
     where: {
       id: Number(id),
