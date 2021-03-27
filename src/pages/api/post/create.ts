@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../../lib/prisma";
+import { getSession } from "next-auth/client";
 
 const postCreate = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
@@ -9,11 +10,17 @@ const postCreate = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     const { title, body } = req.body;
+    const session = await getSession({ req });
 
     await prisma.post.create({
       data: {
         title,
         body,
+        author: {
+          connect: {
+            email: session?.user?.email as string,
+          },
+        },
       },
     });
 

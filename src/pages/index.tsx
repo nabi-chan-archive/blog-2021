@@ -15,6 +15,13 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     orderBy: {
       id: "desc",
     },
+    include: {
+      author: {
+        select: {
+          name: true,
+        },
+      },
+    },
   });
 
   return {

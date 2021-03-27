@@ -3,11 +3,19 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import Header from "../components/Header";
 import { Button, Form, Container } from "react-bootstrap";
+import { useSession } from "next-auth/client";
+import Error from "next/error";
 
 const Create: NextPage = () => {
+  const [session, loading] = useSession();
+  const isUser = session && !loading;
   const [title, setTitle] = useState<string>("");
   const [body, setBody] = useState<string>("");
   const router = useRouter();
+
+  if (!isUser) {
+    return <Error statusCode={404} />;
+  }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
