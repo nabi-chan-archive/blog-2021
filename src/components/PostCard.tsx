@@ -2,6 +2,7 @@ import React from "react";
 import PageLink from "./PageLink";
 import { Post } from "../constants/type";
 import { Card, Row } from "react-bootstrap";
+import { formatDate } from "../lib/utils";
 
 interface Props {
   post: Post;
@@ -17,7 +18,7 @@ const PostCard = ({ post }: Props) => {
         </Card.Body>
         <Card.Footer>
           <Row noGutters className={"justify-content-between"}>
-            <small className="text-muted">{post.createdAt.toString()}</small>
+            <small className="text-muted">{formatDate(post.createdAt)}</small>
             <small className="text-muted">{post.author.name} @ Seoul</small>
           </Row>
         </Card.Footer>

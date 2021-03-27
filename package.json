@@ -24,6 +24,7 @@
     "@prisma/client": "^2.19.0",
     "@types/next-auth": "^3.7.3",
     "bootstrap": "^4.6.0",
+    "date-fns": "^2.19.0",
     "next": "10.0.5",
     "next-auth": "^3.13.3",
     "prisma": "^2.19.0",
