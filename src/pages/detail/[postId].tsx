@@ -7,6 +7,7 @@ import PostHeader from "../../components/post/Header";
 import PostContent from "../../components/post/Content";
 import { Container, Nav, Row } from "react-bootstrap";
 import Link from "next/link";
+import { useSession } from "next-auth/client";
 
 interface Props {
   postId: number;
@@ -39,6 +40,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 };
 
 const Detail: NextPage<Props> = ({ postId, post }) => {
+  const [session, loading] = useSession();
+  const isUser = session && !loading;
+
   return (
     <>
       <Header />
@@ -55,18 +59,20 @@ const Detail: NextPage<Props> = ({ postId, post }) => {
               </Nav.Item>
             </Nav>
 
-            <Nav>
-              <Nav.Item>
-                <Link href={`/modify/${postId}`}>
-                  <Nav.Link href={`/modify/${postId}`}>수정하기</Nav.Link>
-                </Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Link href={"#"}>
-                  <Nav.Link href={"#"}>삭제하기</Nav.Link>
-                </Link>
-              </Nav.Item>
-            </Nav>
+            {isUser ? (
+              <Nav>
+                <Nav.Item>
+                  <Link href={`/modify/${postId}`}>
+                    <Nav.Link href={`/modify/${postId}`}>수정하기</Nav.Link>
+                  </Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Link href={"#"}>
+                    <Nav.Link href={"#"}>삭제하기</Nav.Link>
+                  </Link>
+                </Nav.Item>
+              </Nav>
+            ) : null}
           </Row>
         </PostHeader>
 

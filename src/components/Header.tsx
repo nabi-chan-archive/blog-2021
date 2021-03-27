@@ -1,8 +1,12 @@
 import React from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import Link from "next/link";
+import { useSession } from "next-auth/client";
 
 const Header = () => {
+  const [session, loading] = useSession();
+  const isUser = session && !loading;
+
   return (
     <Navbar
       collapseOnSelect
@@ -25,12 +29,16 @@ const Header = () => {
           </Nav>
 
           <Nav>
-            <Link href={"/login"}>
-              <Nav.Link href={"/login"}>{"로그인"}</Nav.Link>
-            </Link>
-            <Link href={"/create"}>
-              <Nav.Link href={"/create"}>{"글쓰기"}</Nav.Link>
-            </Link>
+            {!isUser ? (
+              <Link href={"/login"}>
+                <Nav.Link href={"/login"}>{"로그인"}</Nav.Link>
+              </Link>
+            ) : null}
+            {isUser ? (
+              <Link href={"/create"}>
+                <Nav.Link href={"/create"}>{"글쓰기"}</Nav.Link>
+              </Link>
+            ) : null}
           </Nav>
         </Navbar.Collapse>
       </Container>
