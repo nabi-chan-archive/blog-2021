@@ -38,7 +38,7 @@ const Create: NextPage = () => {
     <>
       <Header />
       <Container>
-        <h3>포스트 작성하기</h3>햣
+        <h3>포스트 작성하기</h3>
         <Form onSubmit={handleSubmit}>
           <Form.Group>
             <Form.Label>제목</Form.Label>
