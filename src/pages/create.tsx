@@ -1,38 +1,8 @@
 import React, { useState } from "react";
 import { NextPage } from "next";
-import styled from "styled-components";
-import Container from "../layouts/Container";
 import { useRouter } from "next/router";
-
-const Form = styled.form`
-  display: grid;
-  grid-row-gap: 20px;
-`;
-
-const Label = styled.label`
-  display: block;
-
-  span {
-    color: #000;
-  }
-
-  input,
-  textarea {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    box-sizing: content-box;
-    border: solid 1px #a0a0a0;
-    width: calc(100% - 6ex);
-    padding: 3ex;
-    font-size: 12px;
-  }
-
-  textarea {
-    min-height: 30ex;
-    resize: vertical;
-  }
-`;
+import Header from "../components/Header";
+import { Button, Form, Container } from "react-bootstrap";
 
 const Create: NextPage = () => {
   const [title, setTitle] = useState<string>("");
@@ -65,35 +35,46 @@ const Create: NextPage = () => {
   };
 
   return (
-    <Container>
-      <h1>Post 만들기</h1>
+    <>
+      <Header />
+      <Container>
+        <h3>포스트 작성하기</h3>햣
+        <Form onSubmit={handleSubmit}>
+          <Form.Group>
+            <Form.Label>제목</Form.Label>
+            <Form.Control
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              name="title"
+              placeholder={"제목을 입력하세요."}
+            />
+          </Form.Group>
 
-      <Form onSubmit={handleSubmit}>
-        <Label>
-          <span>제목</span>
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            name="title"
-            placeholder={"제목을 입력하세요."}
-          />
-        </Label>
+          <Form.Group>
+            <Form.Label>본문</Form.Label>
+            <Form.Control
+              as={"textarea"}
+              value={body}
+              rows={15}
+              onChange={(e) => setBody(e.target.value)}
+              name="body"
+              placeholder={"내용을 입력하세요."}
+            />
+          </Form.Group>
 
-        <Label>
-          <span>본문</span>
-          <textarea
-            value={body}
-            onChange={(e) => setBody(e.target.value)}
-            name="body"
-            placeholder={"내용을 입력하세요."}
-          />
-        </Label>
+          <Form.Row>
+            <Button variant="primary" type="submit">
+              작성하기
+            </Button>
 
-        <button type={"submit"}>저장하기</button>
-        <button type={"reset"}>리셋</button>
-      </Form>
-    </Container>
+            <Button variant="text" type="reset">
+              취소하기
+            </Button>
+          </Form.Row>
+        </Form>
+      </Container>
+    </>
   );
 };
 
