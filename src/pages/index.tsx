@@ -10,7 +10,7 @@ interface Props {
   posts: Post[];
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async (ctx) => {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const posts = await prisma.post.findMany({
     orderBy: {
       id: "desc",

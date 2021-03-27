@@ -13,10 +13,10 @@ interface Props {
   post: Post;
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async (ctx) => {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { postId } = ctx.query;
   try {
-    const post: Post = await prisma.post.findFirst({
+    const post = await prisma.post.findFirst({
       where: {
         id: parseInt(postId as string),
       },
