@@ -20,7 +20,9 @@ const Login: NextPage = () => {
   // 로그인 function
   const handleLogin = async () => {
     try {
-      await signIn("github");
+      await signIn("github", {
+        callbackUrl: "/",
+      });
     } catch (e) {
       alert("서버와 통신을 하던 도중 문제가 발생했습니다.");
       console.error(e);
