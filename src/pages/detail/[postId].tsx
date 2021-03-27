@@ -3,6 +3,8 @@ import { GetServerSideProps, NextPage } from "next";
 import prisma from "../../lib/prisma";
 import { Post } from "../../constants/type";
 import Header from "../../components/Header";
+import PostHeader from "../../components/post/Header";
+import PostContent from "../../components/post/Content";
 import { Container, Nav, Row } from "react-bootstrap";
 import Link from "next/link";
 
@@ -41,7 +43,7 @@ const Detail: NextPage<Props> = ({ postId, post }) => {
     <>
       <Header />
       <Container>
-        <header>
+        <PostHeader>
           <h2>{post.title}</h2>
           <h6>{post.createdAt.toString()}</h6>
           <Row>
@@ -66,11 +68,11 @@ const Detail: NextPage<Props> = ({ postId, post }) => {
               </Nav.Item>
             </Nav>
           </Row>
-        </header>
+        </PostHeader>
 
-        <article>
+        <PostContent>
           <p>{post.body}</p>
-        </article>
+        </PostContent>
       </Container>
     </>
   );
