@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import { Button, Form, Container } from "react-bootstrap";
 import { useSession } from "next-auth/client";
 import Error from "next/error";
+import { MarkdownEditor } from "../components/editor";
 
 const Create: NextPage = () => {
   const [session, loading] = useSession();
@@ -61,14 +62,7 @@ const Create: NextPage = () => {
 
           <Form.Group>
             <Form.Label>본문</Form.Label>
-            <Form.Control
-              as={"textarea"}
-              value={body}
-              rows={15}
-              onChange={(e) => setBody(e.target.value)}
-              name="body"
-              placeholder={"내용을 입력하세요."}
-            />
+            <MarkdownEditor defaultValue={body} onChange={setBody} />
           </Form.Group>
 
           <Form.Row>
