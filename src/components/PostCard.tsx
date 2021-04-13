@@ -14,7 +14,7 @@ const PostCard = ({ post }: Props) => {
       <Card className="mb-3">
         <Card.Body>
           <Card.Title>{post.title}</Card.Title>
-          <Card.Subtitle>{post.body}</Card.Subtitle>
+          <Card.Subtitle>{post.subTitle}</Card.Subtitle>
         </Card.Body>
         <Card.Footer>
           <Row noGutters className={"justify-content-between"}>

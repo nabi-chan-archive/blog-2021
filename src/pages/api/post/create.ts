@@ -9,12 +9,13 @@ const postCreate = async (req: NextApiRequest, res: NextApiResponse) => {
       return;
     }
 
-    const { title, body } = req.body;
+    const { title, subTitle, body } = req.body;
     const session = await getSession({ req });
 
     await prisma.post.create({
       data: {
         title,
+        subTitle,
         body,
         author: {
           connect: {

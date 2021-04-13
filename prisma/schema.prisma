@@ -13,6 +13,7 @@ generator client {
 model Post {
   id        Int      @id @default(autoincrement())
   title     String
+  subTitle  String
   body      String
   createdAt DateTime @default(now())
   author    User?    @relation(fields: [authorId], references: [id])

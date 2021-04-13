@@ -43,6 +43,7 @@ const Create: NextPage<Props> = ({ postId, post }) => {
   const [session, loading] = useSession();
   const isUser = session && !loading;
   const [title, setTitle] = useState<string>("");
+  const [subTitle, setSubTitle] = useState<string>("");
   const [body, setBody] = useState<string>("");
   const router = useRouter();
 
@@ -65,6 +66,7 @@ const Create: NextPage<Props> = ({ postId, post }) => {
         },
         body: JSON.stringify({
           title,
+          subTitle,
           body,
         }),
       });
@@ -94,6 +96,17 @@ const Create: NextPage<Props> = ({ postId, post }) => {
               onChange={(e) => setTitle(e.target.value)}
               name="title"
               placeholder={"제목을 입력하세요."}
+            />
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Label>부제목</Form.Label>
+            <Form.Control
+              type="text"
+              value={subTitle}
+              onChange={(e) => setSubTitle(e.target.value)}
+              name="title"
+              placeholder={"부제목을 입력하세요."}
             />
           </Form.Group>
 
