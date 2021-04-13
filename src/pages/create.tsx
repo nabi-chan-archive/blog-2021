@@ -11,6 +11,8 @@ const Create: NextPage = () => {
   const [session, loading] = useSession();
   const isUser = session && !loading;
   const [title, setTitle] = useState<string>("");
+  const [subTitle, setSubTitle] = useState<string>("");
+  const [place, setPlace] = useState<string>("");
   const [body, setBody] = useState<string>("");
   const router = useRouter();
 
@@ -28,6 +30,8 @@ const Create: NextPage = () => {
         },
         body: JSON.stringify({
           title,
+          subTitle,
+          place,
           body,
         }),
       });
@@ -61,8 +65,30 @@ const Create: NextPage = () => {
           </Form.Group>
 
           <Form.Group>
+            <Form.Label>부제목</Form.Label>
+            <Form.Control
+              type="text"
+              value={subTitle}
+              onChange={(e) => setSubTitle(e.target.value)}
+              name="title"
+              placeholder={"부제목을 입력하세요."}
+            />
+          </Form.Group>
+
+          <Form.Group>
             <Form.Label>본문</Form.Label>
             <MarkdownEditor defaultValue={body} onChange={setBody} />
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Label>장소</Form.Label>
+            <Form.Control
+              type="text"
+              value={place}
+              onChange={(e) => setPlace(e.target.value)}
+              name="place"
+              placeholder={"이 글은 어디에서 작성되었나요?"}
+            />
           </Form.Group>
 
           <Form.Row>
