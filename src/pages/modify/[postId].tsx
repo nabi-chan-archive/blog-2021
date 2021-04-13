@@ -7,6 +7,7 @@ import { useSession } from "next-auth/client";
 import Error from "next/error";
 import { Post } from "../../constants/type";
 import prisma from "../../lib/prisma";
+import { MarkdownEditor } from "../../components/editor";
 
 interface Props {
   postId: number;
@@ -98,14 +99,7 @@ const Create: NextPage<Props> = ({ postId, post }) => {
 
           <Form.Group>
             <Form.Label>본문</Form.Label>
-            <Form.Control
-              as={"textarea"}
-              value={body}
-              rows={15}
-              onChange={(e) => setBody(e.target.value)}
-              name="body"
-              placeholder={"내용을 입력하세요."}
-            />
+            <MarkdownEditor defaultValue={body} onChange={setBody} />
           </Form.Group>
 
           <Form.Row>
