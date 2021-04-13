@@ -10,7 +10,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/client";
 import { formatDate } from "../../lib/utils";
 import { useRouter } from "next/router";
-import ReactMarkdown from "react-markdown";
+import { Markdown } from "../../components/renderer";
 
 interface Props {
   postId: number;
@@ -103,7 +103,7 @@ const Detail: NextPage<Props> = ({ postId, post }) => {
         </PostHeader>
 
         <PostContent>
-          <ReactMarkdown>{post.body}</ReactMarkdown>
+          <Markdown markdown={post.body} />
         </PostContent>
       </Container>
     </>

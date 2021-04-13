@@ -1,6 +1,6 @@
 import React from "react";
-import ReactMarkdown from "react-markdown";
 import styled from "styled-components";
+import { Markdown } from "../renderer";
 
 interface Props {
   markdown: string;
@@ -15,7 +15,7 @@ const Content = styled.div`
 export function Preview({ markdown }: Props) {
   return (
     <Content>
-      <ReactMarkdown>{markdown}</ReactMarkdown>
+      <Markdown markdown={markdown} />
     </Content>
   );
 }
