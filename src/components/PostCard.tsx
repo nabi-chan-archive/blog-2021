@@ -19,7 +19,7 @@ const PostCard = ({ post }: Props) => {
         <Card.Footer>
           <Row noGutters className={"justify-content-between"}>
             <small className="text-muted">{formatDate(post.createdAt)}</small>
-            <small className="text-muted">{post.author.name} @ Seoul</small>
+            <small className="text-muted">{post.author.name} @ {post.place}</small>
           </Row>
         </Card.Footer>
       </Card>
