@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { GetServerSideProps, NextPage } from "next";
 import { useRouter } from "next/router";
 import Header from "../../components/Header";
@@ -42,20 +42,15 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 const Create: NextPage<Props> = ({ postId, post }) => {
   const [session, loading] = useSession();
   const isUser = session && !loading;
-  const [title, setTitle] = useState<string>("");
-  const [subTitle, setSubTitle] = useState<string>("");
-  const [body, setBody] = useState<string>("");
-  const [place, setPlace] = useState<string>("");
+  const [title, setTitle] = useState<string>(post.title);
+  const [subTitle, setSubTitle] = useState<string>(post.subTitle);
+  const [body, setBody] = useState<string>(post.body);
+  const [place, setPlace] = useState<string>(post.place);
   const router = useRouter();
 
   if (!isUser) {
     return <Error statusCode={404} />;
   }
-
-  useEffect(() => {
-    setTitle(post.title);
-    setBody(post.body);
-  }, []);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
