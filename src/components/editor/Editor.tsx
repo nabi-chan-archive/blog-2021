@@ -11,7 +11,7 @@ export function Editor({ value, onChange }: Props) {
     <Form.Control
       as={"textarea"}
       value={value}
-      row={15}
+      rows={15}
       onChange={(e) => onChange(e.target.value)}
       name="body"
       placeholder={"내용을 입력하세요."}
