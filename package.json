@@ -23,6 +23,7 @@
   "dependencies": {
     "@prisma/client": "^2.19.0",
     "aws-sdk": "^2.890.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "date-fns": "^2.19.0",
     "mime-types": "^2.1.30",
