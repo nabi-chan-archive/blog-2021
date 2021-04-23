@@ -19,6 +19,12 @@ const Content = styled.article`
   h4 {
     font-size: 1rem;
   }
+
+  a {
+    padding-bottom: 1px;
+    border-bottom: solid 1px #0056b3;
+    text-decoration: none;
+  }
 `;
 
 export default Content;
