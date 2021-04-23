@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { GetServerSideProps, NextPage } from "next";
 import prisma from "../../lib/prisma";
 import { Post } from "../../constants/type";
@@ -11,6 +11,7 @@ import { useSession } from "next-auth/client";
 import { formatDate } from "../../lib/utils";
 import { useRouter } from "next/router";
 import { Markdown } from "../../components/renderer";
+import { Mixpanel, TRACK } from "../../lib/mixpanel";
 
 interface Props {
   postId: number;
@@ -46,6 +47,13 @@ const Detail: NextPage<Props> = ({ postId, post }) => {
   const [session, loading] = useSession();
   const isUser = session && !loading;
   const { push } = useRouter();
+
+  useEffect(() => {
+    Mixpanel.track(TRACK.READ_POST, {
+      id: postId,
+      title: post.title,
+    });
+  }, [postId]);
 
   async function deletePost() {
     try {
