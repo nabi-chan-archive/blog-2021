@@ -407,6 +407,11 @@
   resolved "https://registry.yarnpkg.com/@types/mime-types/-/mime-types-2.1.0.tgz#9ca52cda363f699c69466c2a6ccdaad913ea7a73"
   integrity sha1-nKUs2jY/aZxpRmwqbM2q2RPqenM=
 
+"@types/mixpanel-browser@^2.35.6":
+  version "2.35.6"
+  resolved "https://registry.yarnpkg.com/@types/mixpanel-browser/-/mixpanel-browser-2.35.6.tgz#6a2c98471f3cf4473625a4345a4abd37d30dec84"
+  integrity sha512-wYzQ6nIr7HjPgpkyaO0nxXa3GIbm1I7kgJHuTJWxFGS+4/TFfOIy739a/GoDM2PczeSEX5v4FplLbOdzgxjttg==
+
 "@types/next-auth@^3.7.3":
   version "3.7.3"
   resolved "https://registry.yarnpkg.com/@types/next-auth/-/next-auth-3.7.3.tgz#e5b2ea62d90ea89797c4570d77074c558b5a6484"
@@ -3955,6 +3960,11 @@ mixin-deep@^1.2.0:
   dependencies:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
+
+mixpanel-browser@^2.41.0:
+  version "2.41.0"
+  resolved "https://registry.yarnpkg.com/mixpanel-browser/-/mixpanel-browser-2.41.0.tgz#d49753b4e4a7e6ddd18c126be4a917fff4ce3039"
+  integrity sha512-IEuc9cH44hba9a3KEyulXINLn+gpFqluBDo7xiTk1h3j111dmmsctaE6tUzZYxgGLVqeNhTpsccdliOeX24Wlw==
 
 mkdirp-classic@^0.5.2, mkdirp-classic@^0.5.3:
   version "0.5.3"
