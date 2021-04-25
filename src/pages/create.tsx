@@ -6,6 +6,7 @@ import { Button, Form, Container } from "react-bootstrap";
 import { useSession } from "next-auth/client";
 import Error from "next/error";
 import { MarkdownEditor } from "../components/editor";
+import { useBeforeunload } from "react-beforeunload";
 
 const Create: NextPage = () => {
   const [session, loading] = useSession();
@@ -19,6 +20,11 @@ const Create: NextPage = () => {
   if (!isUser) {
     return <Error statusCode={404} />;
   }
+
+  useBeforeunload((event) => {
+    const confirm = window.confirm("이 페이지를 나가시겠습니까?");
+    if (!confirm || !body) event.preventDefault();
+  });
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

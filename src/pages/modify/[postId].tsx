@@ -8,6 +8,7 @@ import Error from "next/error";
 import { Post } from "../../constants/type";
 import prisma from "../../lib/prisma";
 import { MarkdownEditor } from "../../components/editor";
+import { useBeforeunload } from "react-beforeunload";
 
 interface Props {
   postId: number;
@@ -51,6 +52,11 @@ const Create: NextPage<Props> = ({ postId, post }) => {
   if (!isUser) {
     return <Error statusCode={404} />;
   }
+
+  useBeforeunload((event) => {
+    const confirm = window.confirm("이 페이지를 나가시겠습니까?");
+    if (!confirm || !body) event.preventDefault();
+  });
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
