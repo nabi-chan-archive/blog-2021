@@ -26,6 +26,11 @@ const Header = () => {
             <Link href={"/"}>
               <Nav.Link href={"/"}>{"최근 작성한 글"}</Nav.Link>
             </Link>
+            {isUser ? (
+              <Link href={"/private"}>
+                <Nav.Link href={"/private"}>{"모든 글"}</Nav.Link>
+              </Link>
+            ) : null}
           </Nav>
 
           <Nav>
