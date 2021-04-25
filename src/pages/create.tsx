@@ -21,7 +21,10 @@ const Create: NextPage = () => {
     return <Error statusCode={404} />;
   }
 
-  useBeforeunload();
+  useBeforeunload((event) => {
+    const confirm = window.confirm("이 페이지를 나가시겠습니까?");
+    if (!confirm || !body) event.preventDefault();
+  });
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
