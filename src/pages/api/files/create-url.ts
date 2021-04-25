@@ -101,7 +101,9 @@ const createUrl: NextApiHandler = async (req, res) => {
     });
 
     res.status(201).json({
-      imagePath: `https://d1dahrilggo45h.cloudfront.net/${path}/${filename}`,
+      imagePath: encodeURI(
+        `https://d1dahrilggo45h.cloudfront.net/${path}/${filename}`,
+      ),
       signedUrl,
     });
   } catch (e) {
