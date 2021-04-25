@@ -17,6 +17,7 @@
     "precommit": "lint-staged",
     "deploy": "serverless",
     "prisma:generate": "prisma generate",
+    "prisma:format": "prisma format",
     "prisma:push": "prisma db push --preview-feature",
     "prisma:studio": "prisma studio"
   },
