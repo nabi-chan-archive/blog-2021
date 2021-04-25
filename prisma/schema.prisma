@@ -10,13 +10,20 @@ generator client {
   provider = "prisma-client-js"
 }
 
+enum PostState {
+  HIDDEN // 나만 볼 수 있음
+  PRIVATE // 링크가 있는 사용자가 볼 수 있음
+  SAVED // 임시 저장
+  PUBLISHED // 모두가 볼 수 있음
+}
+
 model Post {
   id        Int       @id @default(autoincrement())
   title     String
   subTitle  String
   body      String
   place     String    @default("지구")
-  createdAt DateTime @default(now())
+  state     PostState @default(PUBLISHED)
   createdAt DateTime  @default(now())
   author    User?     @relation(fields: [authorId], references: [id])
   authorId  Int?
@@ -64,7 +71,6 @@ model Account {
   @@index([providerAccountId], name: "providerAccountId")
   @@index([providerId], name: "providerId")
   @@index([userId], name: "userId")
-
   @@map(name: "accounts")
 }
 

@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import Header from "../components/Header";
-import { Button, Form, Container } from "react-bootstrap";
+import { Button, Container, Form } from "react-bootstrap";
 import { useSession } from "next-auth/client";
 import Error from "next/error";
 import { MarkdownEditor } from "../components/editor";
 import { useBeforeunload } from "react-beforeunload";
+import { PostState } from "../constants/type";
 
 const Create: NextPage = () => {
   const [session, loading] = useSession();
@@ -15,6 +16,7 @@ const Create: NextPage = () => {
   const [subTitle, setSubTitle] = useState<string>("");
   const [place, setPlace] = useState<string>("");
   const [body, setBody] = useState<string>("");
+  const [state, setPostState] = useState<PostState>(PostState.PUBLISHED);
   const router = useRouter();
 
   if (!isUser) {
@@ -39,6 +41,7 @@ const Create: NextPage = () => {
           subTitle,
           place,
           body,
+          state,
         }),
       });
 
@@ -95,6 +98,22 @@ const Create: NextPage = () => {
               name="place"
               placeholder={"이 글은 어디에서 작성되었나요?"}
             />
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Label>공개 여부</Form.Label>
+            <Form.Control
+              as={"select"}
+              name={"state"}
+              onChange={(e) => setPostState(e.target.value as PostState)}
+              value={state}
+            >
+              <option value={PostState.PUBLISHED}>{"모두에게 공개"}</option>
+              <option value={PostState.PRIVATE}>
+                {"링크가 있는 사람에게만 공개"}
+              </option>
+              <option value={PostState.HIDDEN}>{"나만 보기"}</option>
+            </Form.Control>
           </Form.Group>
 
           <Form.Row>

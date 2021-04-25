@@ -46,7 +46,7 @@ async function deletePost(id: string | string[], email: string) {
 async function updatePost(
   id: string | string[],
   email: string,
-  { title, body }: Post,
+  { title, body, state }: Post,
 ) {
   return await prisma.post.updateMany({
     where: {
@@ -58,6 +58,7 @@ async function updatePost(
     data: {
       title,
       body,
+      state,
     },
   });
 }
