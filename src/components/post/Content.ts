@@ -25,6 +25,10 @@ const Content = styled.article`
     border-bottom: solid 1px #0056b3;
     text-decoration: none;
   }
+
+  img {
+    max-width: 100%;
+  }
 `;
 
 export default Content;
