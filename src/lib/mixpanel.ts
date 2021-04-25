@@ -5,7 +5,7 @@ const production = process.env.NODE_ENV === "production";
 
 const actions = {
   track: (name: MIX_TRACK, props: Record<string, unknown>) => {
-    if (!production) mixpanel.track(name, props);
+    if (production) mixpanel.track(name, props);
   },
 };
 
