@@ -6,6 +6,13 @@ import { getSession } from "next-auth/client";
 
 const BUCKET_NAME = "plog-images";
 
+if (process.env.NODE_ENV !== "development") {
+  AWS.config.update({
+    accessKeyId: process.env.UPLOADER_ID,
+    secretAccessKey: process.env.UPLOADER_SECRET,
+  });
+}
+
 const s3 = new AWS.S3({
   region: "ap-northeast-2",
   signatureVersion: "v4",
