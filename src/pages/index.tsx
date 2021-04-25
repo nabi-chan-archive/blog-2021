@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { GetServerSideProps, NextPage } from "next";
 import prisma from "../lib/prisma";
-import { Post } from "../constants/type";
+import { Post, PostState } from "../constants/type";
 import PostCard from "../components/PostCard";
 import Header from "../components/Header";
 import { Container } from "react-bootstrap";
@@ -22,6 +22,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
           name: true,
         },
       },
+    },
+    where: {
+      state: PostState.PUBLISHED,
     },
   });
 
