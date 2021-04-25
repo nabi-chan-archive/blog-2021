@@ -5,9 +5,10 @@ import Header from "../../components/Header";
 import { Button, Form, Container } from "react-bootstrap";
 import { useSession } from "next-auth/client";
 import Error from "next/error";
-import { Post } from "../../constants/type";
+import { Post, PostState } from "../../constants/type";
 import prisma from "../../lib/prisma";
 import { MarkdownEditor } from "../../components/editor";
+import { useBeforeunload } from "react-beforeunload";
 
 interface Props {
   postId: number;
@@ -46,11 +47,17 @@ const Create: NextPage<Props> = ({ postId, post }) => {
   const [subTitle, setSubTitle] = useState<string>(post.subTitle);
   const [body, setBody] = useState<string>(post.body);
   const [place, setPlace] = useState<string>(post.place);
+  const [state, setPostState] = useState<PostState>(post.state);
   const router = useRouter();
 
   if (!isUser) {
     return <Error statusCode={404} />;
   }
+
+  useBeforeunload((event) => {
+    const confirm = window.confirm("이 페이지를 나가시겠습니까?");
+    if (!confirm || !body) event.preventDefault();
+  });
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -64,6 +71,7 @@ const Create: NextPage<Props> = ({ postId, post }) => {
           title,
           subTitle,
           body,
+          state,
         }),
       });
 
@@ -120,6 +128,22 @@ const Create: NextPage<Props> = ({ postId, post }) => {
               name="place"
               placeholder={"이 글은 어디에서 작성되었나요?"}
             />
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Label>공개 여부</Form.Label>
+            <Form.Control
+              as={"select"}
+              name={"state"}
+              onChange={(e) => setPostState(e.target.value as PostState)}
+              value={state}
+            >
+              <option value={PostState.PUBLISHED}>{"모두에게 공개"}</option>
+              <option value={PostState.PRIVATE}>
+                {"링크가 있는 사람에게만 공개"}
+              </option>
+              <option value={PostState.HIDDEN}>{"나만 보기"}</option>
+            </Form.Control>
           </Form.Group>
 
           <Form.Row>

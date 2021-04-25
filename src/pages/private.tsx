@@ -6,12 +6,15 @@ import PostCard from "../components/PostCard";
 import Header from "../components/Header";
 import { Container } from "react-bootstrap";
 import { Mixpanel, TRACK } from "../lib/mixpanel";
+import { getSession } from "next-auth/client";
 
 interface Props {
   posts: Post[];
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const session = await getSession(ctx);
+
   const posts = await prisma.post.findMany({
     orderBy: {
       id: "desc",
@@ -24,7 +27,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       },
     },
     where: {
-      state: PostState.PUBLISHED,
+      author: {
+        email: session?.user.email,
+      },
     },
   });
 

@@ -9,7 +9,7 @@ const postCreate = async (req: NextApiRequest, res: NextApiResponse) => {
       return;
     }
 
-    const { title, subTitle, place, body } = req.body;
+    const { title, subTitle, place, body, state } = req.body;
     const session = await getSession({ req });
 
     await prisma.post.create({
@@ -18,6 +18,7 @@ const postCreate = async (req: NextApiRequest, res: NextApiResponse) => {
         subTitle,
         place,
         body,
+        state,
         author: {
           connect: {
             email: session?.user?.email as string,

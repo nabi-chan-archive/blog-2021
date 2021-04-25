@@ -10,19 +10,27 @@ generator client {
   provider = "prisma-client-js"
 }
 
+enum PostState {
+  HIDDEN // 나만 볼 수 있음
+  PRIVATE // 링크가 있는 사용자가 볼 수 있음
+  SAVED // 임시 저장
+  PUBLISHED // 모두가 볼 수 있음
+}
+
 model Post {
-  id        Int      @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   title     String
   subTitle  String
   body      String
-  place     String   @default("지구")
-  createdAt DateTime @default(now())
-  author    User?    @relation(fields: [authorId], references: [id])
+  place     String    @default("지구")
+  state     PostState @default(PUBLISHED)
+  createdAt DateTime  @default(now())
+  author    User?     @relation(fields: [authorId], references: [id])
   authorId  Int?
 }
 
 model Image {
-  id        String   @id @db.Uuid @default(uuid())
+  id        String   @id @default(uuid()) @db.Uuid
   user      User?    @relation(fields: [userId], references: [id])
   userId    Int?
   path      String   @db.VarChar(255)
@@ -47,7 +55,7 @@ model User {
 }
 
 model Account {
-  id                 Int       @default(autoincrement()) @id
+  id                 Int       @id @default(autoincrement())
   compoundId         String    @unique @map(name: "compound_id")
   userId             Int       @map(name: "user_id")
   providerType       String    @map(name: "provider_type")
@@ -59,15 +67,15 @@ model Account {
   createdAt          DateTime  @default(now()) @map(name: "created_at")
   updatedAt          DateTime  @default(now()) @map(name: "updated_at")
 
+
   @@index([providerAccountId], name: "providerAccountId")
   @@index([providerId], name: "providerId")
   @@index([userId], name: "userId")
-
   @@map(name: "accounts")
 }
 
 model Session {
-  id           Int      @default(autoincrement()) @id
+  id           Int      @id @default(autoincrement())
   userId       Int      @map(name: "user_id")
   expires      DateTime
   sessionToken String   @unique @map(name: "session_token")

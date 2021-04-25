@@ -7,6 +7,7 @@ export interface Post {
   createdAt: string;
   author: User;
   authorId: number;
+  state: PostState;
 }
 
 export interface User {
@@ -18,4 +19,11 @@ export interface User {
   createdAt: Date;
   updatedAt: Date;
   posts: Post[];
+}
+
+export enum PostState {
+  HIDDEN = "HIDDEN",
+  PRIVATE = "PRIVATE",
+  SAVED = "SAVED",
+  PUBLISHED = "PUBLISHED",
 }
