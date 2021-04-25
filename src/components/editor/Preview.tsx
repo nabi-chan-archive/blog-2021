@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Markdown } from "../renderer";
+import PostContent from "../post/Content";
 
 interface Props {
   markdown: string;
@@ -15,7 +16,9 @@ const Content = styled.div`
 export function Preview({ markdown }: Props) {
   return (
     <Content>
-      <Markdown markdown={markdown} />
+      <PostContent>
+        <Markdown markdown={markdown} />
+      </PostContent>
     </Content>
   );
 }
