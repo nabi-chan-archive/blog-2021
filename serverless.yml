@@ -1,0 +1,5 @@
+pinot-blog:
+  component: "@sls-next/serverless-component"
+  inputs:
+    bucketName: 'pinot-blog'
+    bucketRegion: ap-northeast-2
