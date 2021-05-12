@@ -3,6 +3,8 @@ pinot-blog:
   inputs:
     bucketName: 'pinot-blog'
     bucketRegion: ap-northeast-2
+    cloudfront:
+      distributionId: E7NBTI3P9O4YH
     name:
       defaultLambda: "plog-default-lambda"
       apiLambda: "plog-api-lambda"
