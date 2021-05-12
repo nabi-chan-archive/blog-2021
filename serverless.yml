@@ -3,3 +3,7 @@ pinot-blog:
   inputs:
     bucketName: 'pinot-blog'
     bucketRegion: ap-northeast-2
+    name:
+      defaultLambda: "plog-default-lambda"
+      apiLambda: "plog-api-lambda"
+      imageLambda: "plog-image-lambda"
