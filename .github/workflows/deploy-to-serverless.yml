@@ -29,5 +29,18 @@ jobs:
       - name: prisma clinet 생성
         run: yarn prisma:generate
 
+      - name: aws credentials 설정
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET }}
+          aws-region: ap-northeast-2
+
+      - name: .serverless state 다운로드
+        run: aws s3 sync s3://pinot-blog-state/production/.serverless .serverless --delete
+
       - name: serverless 배포
         run: yarn deploy
+
+      - name: .serverless state 업로드
+        run: aws s3 sync .serverless s3://pinot-blog-state/production/.serverless --delete
