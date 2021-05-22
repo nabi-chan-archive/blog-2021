@@ -1,6 +1,7 @@
 pinot-blog:
   component: "@sls-next/serverless-component"
   inputs:
+    policy: arn:aws:iam::459964240689:policy/plog_github_workflow
     bucketName: 'pinot-blog'
     bucketRegion: ap-northeast-2
     cloudfront:

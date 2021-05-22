@@ -1,0 +1,65 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "VisualEditor0",
+      "Effect": "Allow",
+      "Action": [
+        "cloudfront:ListDistributionsByCachePolicyId",
+        "cloudfront:ListCloudFrontOriginAccessIdentities",
+        "logs:CreateLogStream",
+        "cloudfront:ListFieldLevelEncryptionConfigs",
+        "cloudfront:ListDistributions",
+        "cloudfront:ListFieldLevelEncryptionProfiles",
+        "logs:CreateLogGroup",
+        "logs:PutLogEvents",
+        "cloudfront:ListDistributionsByWebACLId",
+        "cloudfront:CreateCloudFrontOriginAccessIdentity"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "VisualEditor1",
+      "Effect": "Allow",
+      "Action": [
+        "iam:GetRole",
+        "s3:PutAccelerateConfiguration",
+        "lambda:GetFunction",
+        "lambda:UpdateFunctionConfiguration",
+        "s3:CreateBucket",
+        "lambda:GetFunctionConfiguration",
+        "iam:AttachRolePolicy",
+        "s3:ListBucket",
+        "s3:GetAccelerateConfiguration",
+        "iam:PutRolePolicy",
+        "cloudfront:CreateInvalidation",
+        "lambda:EnableReplication",
+        "lambda:UpdateFunctionCode",
+        "cloudfront:GetDistribution",
+        "s3:PutObject",
+        "s3:GetObject",
+        "iam:PassRole",
+        "cloudfront:ListInvalidations",
+        "s3:PutBucketPolicy",
+        "lambda:PublishVersion",
+        "cloudfront:UpdateDistribution",
+        "cloudfront:GetDistributionConfig"
+      ],
+      "Resource": [
+        "arn:aws:lambda:us-east-1:AWS_USERID:function:plog-default-lambda",
+        "arn:aws:lambda:us-east-1:AWS_USERID:function:plog-image-lambda",
+        "arn:aws:lambda:us-east-1:AWS_USERID:function:plog-api-lambda",
+        "arn:aws:lambda:us-east-1:AWS_USERID:function:plog-default-lambda:*",
+        "arn:aws:lambda:us-east-1:AWS_USERID:function:plog-api-lambda:*",
+        "arn:aws:lambda:us-east-1:AWS_USERID:function:plog-image-lambda:*",
+        "arn:aws:cloudfront::AWS_USERID:distribution/E7NBTI3P9O4YH",
+        "arn:aws:iam::AWS_USERID:role/AWS_ROLE_1",
+        "arn:aws:iam::AWS_USERID:role/AWS_ROLE_2",
+        "arn:aws:iam::AWS_USERID:role/AWS_ROLE_3",
+        "arn:aws:iam::AWS_USERID:role/AWS_ROLE_4",
+        "arn:aws:s3:::pinot-blog/*",
+        "arn:aws:s3:::pinot-blog"
+      ]
+    }
+  ]
+}
