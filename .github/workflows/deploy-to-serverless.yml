@@ -34,7 +34,7 @@ jobs:
           aws-region: ap-northeast-2
 
       - name: env 파일 다운로드
-        run: aws s3 sync s3://pinot-blog-state/production/env .env --delete
+        run: aws s3 cp s3://pinot-blog-state/production/env ./.env
 
       - name: prisma clinet 생성
         run: yarn prisma:generate
