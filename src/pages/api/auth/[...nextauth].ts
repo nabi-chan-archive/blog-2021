@@ -6,8 +6,8 @@ import prisma from "../../../lib/prisma";
 export default NextAuth({
   providers: [
     Providers.GitHub({
-      clientId: process.env.GITHUB_ID as string,
-      clientSecret: process.env.GITHUB_SECRET as string,
+      clientId: process.env.GH_AUTH_KEY as string,
+      clientSecret: process.env.GH_AUTH_SECRET as string,
     }),
   ],
   adapter: Adapters.Prisma.Adapter({ prisma }),
