@@ -72,6 +72,7 @@ const Create: NextPage<Props> = ({ postId, post }) => {
           subTitle,
           body,
           state,
+          place,
         }),
       });
 
