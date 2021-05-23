@@ -28,6 +28,8 @@ jobs:
 
       - name: prisma clinet 생성
         run: yarn prisma:generate
+        env:
+          DATABASE_URL: ${{ env.DATABASE_URL }}
 
       - name: aws credentials 설정
         uses: aws-actions/configure-aws-credentials@v1
@@ -41,6 +43,14 @@ jobs:
 
       - name: serverless 배포
         run: yarn deploy
+        env:
+          DATABASE_URL: ${{ env.DATABASE_URL }}
+          GITHUB_ID: ${{ env.GITHUB_ID }}
+          GITHUB_SECRET: ${{ env.GITHUB_SECRET }}
+          NEXTAUTH_URL: ${{ env.NEXTAUTH_URL }}
+          MIXPANEL_KEY: ${{ env.MIXPANEL_KEY }}
+          UPLOADER_ID: ${{ env.UPLOADER_ID }}
+          UPLOADER_SECRET: ${{ env.UPLOADER_SECRET }}
 
       - name: .serverless state 업로드
         run: aws s3 sync .serverless s3://pinot-blog-state/production/.serverless --delete
