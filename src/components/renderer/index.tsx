@@ -12,13 +12,15 @@ import { Figure, FigCaption } from "../post/Figure";
 const remarkPlugins = [unwrapImages];
 
 const components: Components = {
-  code({ className, children }) {
+  code({ inline, className, children }) {
     const language = className?.split("-")[1];
     const code = String(children).replace(/\n$/, "") || "";
-    return (
+    return !inline ? (
       <SyntaxHighlighter language={language} style={prism}>
         {code}
       </SyntaxHighlighter>
+    ) : (
+      <code>{code}</code>
     );
   },
   img({ src, alt }) {
