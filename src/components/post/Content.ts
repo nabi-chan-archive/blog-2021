@@ -5,6 +5,7 @@ const Content = styled.article`
   white-space: pre-line;
   line-height: 1;
   font-size: 17px;
+  word-break: keep-all;
 
   code {
     line-height: 1.2;
