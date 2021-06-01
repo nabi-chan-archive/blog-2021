@@ -12,7 +12,7 @@ const remarkPlugins = [unwrapImages];
 
 const components: Components = {
   code({ className, children }) {
-    const language = className.split("-")[1];
+    const language = className?.split("-")[1];
     const code = String(children).replace(/\n$/, "") || "";
     return (
       <SyntaxHighlighter language={language} style={prism}>
