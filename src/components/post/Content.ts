@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Content = styled.article`
   padding: 0 0 100px 0;
   white-space: pre-line;
-  line-height: 1.5;
+  line-height: 1;
   font-size: 17px;
 
   code {
@@ -34,6 +34,10 @@ const Content = styled.article`
 
   img {
     max-width: 100%;
+  }
+
+  p {
+    line-height: 1.5;
   }
 `;
 
