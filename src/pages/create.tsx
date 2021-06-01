@@ -8,7 +8,7 @@ import Error from "next/error";
 import { MarkdownEditor } from "../components/editor";
 import { useBeforeunload } from "react-beforeunload";
 import { PostState } from "../constants/type";
-import axios from "axios";
+import axios from "../lib/axios";
 
 const Create: NextPage = () => {
   const [session, loading] = useSession();
@@ -34,7 +34,7 @@ const Create: NextPage = () => {
     try {
       const result = await axios({
         method: "POST",
-        url: "/api/post/create",
+        url: "/post/create",
         data: {
           title,
           subTitle,
