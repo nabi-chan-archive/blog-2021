@@ -45,6 +45,10 @@ const Content = styled.article`
     padding: 0;
   }
 
+  code {
+    padding: 2px 5px;
+  }
+
   ul {
     list-style-position: inside;
   }
