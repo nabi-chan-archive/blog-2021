@@ -3,6 +3,12 @@ import styled from "styled-components";
 const Content = styled.article`
   padding: 0 0 100px 0;
   white-space: pre-line;
+  line-height: 1.5;
+  font-size: 17px;
+
+  code {
+    line-height: 1.2;
+  }
 
   h1 {
     font-size: 2.5rem;
