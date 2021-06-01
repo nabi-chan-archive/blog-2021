@@ -1,8 +1,9 @@
 import AWS from "aws-sdk";
 import mime from "mime-types";
-import { NextApiHandler } from "next";
 import prisma from "../../../lib/prisma";
-import { getSession } from "next-auth/client";
+import withSession, {
+  NextApiHandlerWithSession,
+} from "../../../lib/middlewares/withSession";
 
 const BUCKET_NAME = "plog-images";
 
@@ -54,7 +55,7 @@ function generateUploadPath({
   return `images/${username}/${type}/${id}`;
 }
 
-const createUrl: NextApiHandler = async (req, res) => {
+const createUrl: NextApiHandlerWithSession = async (req, res) => {
   type RequestBody = {
     type: string;
     filename: string;
@@ -66,11 +67,7 @@ const createUrl: NextApiHandler = async (req, res) => {
   }
 
   try {
-    const session = await getSession({ req });
-
-    if (!session) {
-      return res.status(401).end("Can't find session");
-    }
+    const { session } = req.auth;
 
     const { type, filename, refId } = req.body as RequestBody;
 
@@ -123,4 +120,4 @@ const createUrl: NextApiHandler = async (req, res) => {
   }
 };
 
-export default createUrl;
+export default withSession(createUrl);
