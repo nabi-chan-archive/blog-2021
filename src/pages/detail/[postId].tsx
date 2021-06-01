@@ -12,7 +12,7 @@ import { formatDate } from "../../lib/utils";
 import { useRouter } from "next/router";
 import { Markdown } from "../../components/renderer";
 import { Mixpanel, TRACK } from "../../lib/mixpanel";
-import axios from "axios";
+import axios from "../../lib/axios";
 
 interface Props {
   postId: number;
@@ -64,7 +64,7 @@ const Detail: NextPage<Props> = ({ postId, post }) => {
 
       const result = await axios({
         method: "DELETE",
-        url: `/api/post/${postId}`,
+        url: `/post/${postId}`,
       });
 
       if (result) {

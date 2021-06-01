@@ -9,7 +9,7 @@ import { Post, PostState } from "../../constants/type";
 import prisma from "../../lib/prisma";
 import { MarkdownEditor } from "../../components/editor";
 import { useBeforeunload } from "react-beforeunload";
-import axios from "axios";
+import axios from "../../lib/axios";
 
 interface Props {
   postId: number;
@@ -65,7 +65,7 @@ const Create: NextPage<Props> = ({ postId, post }) => {
     try {
       const result = await axios({
         method: "PUT",
-        url: `/api/post/${postId}`,
+        url: `/post/${postId}`,
         data: {
           title,
           subTitle,
