@@ -12,6 +12,7 @@ import { formatDate } from "../../lib/utils";
 import { useRouter } from "next/router";
 import { Markdown } from "../../components/renderer";
 import { Mixpanel, TRACK } from "../../lib/mixpanel";
+import axios from "axios";
 
 interface Props {
   postId: number;
@@ -61,8 +62,9 @@ const Detail: NextPage<Props> = ({ postId, post }) => {
 
       if (!confirm) return;
 
-      const result = await fetch(`/api/post/${postId}`, {
+      const result = await axios({
         method: "DELETE",
+        url: `/api/post/${postId}`,
       });
 
       if (result) {

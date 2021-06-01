@@ -8,6 +8,7 @@ import Error from "next/error";
 import { MarkdownEditor } from "../components/editor";
 import { useBeforeunload } from "react-beforeunload";
 import { PostState } from "../constants/type";
+import axios from "axios";
 
 const Create: NextPage = () => {
   const [session, loading] = useSession();
@@ -31,18 +32,16 @@ const Create: NextPage = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const result = await fetch("/api/post/create", {
+      const result = await axios({
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
+        url: "/api/post/create",
+        data: {
           title,
           subTitle,
           place,
           body,
           state,
-        }),
+        }
       });
 
       if (result.status === 201) {
