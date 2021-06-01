@@ -7,6 +7,7 @@ import { Components } from "react-markdown/src/ast-to-react";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import unwrapImages from "remark-unwrap-images";
+import { Figure, FigCaption } from "../post/Figure";
 
 const remarkPlugins = [unwrapImages];
 
@@ -22,10 +23,10 @@ const components: Components = {
   },
   img({ src, alt }) {
     return (
-      <figure>
+      <Figure>
         <img src={String(src)} alt={String(alt)} />
-        <figcaption>{String(alt)}</figcaption>
-      </figure>
+        <FigCaption>{String(alt)}</FigCaption>
+      </Figure>
     );
   },
 };
