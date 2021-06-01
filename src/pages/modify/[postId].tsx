@@ -9,6 +9,7 @@ import { Post, PostState } from "../../constants/type";
 import prisma from "../../lib/prisma";
 import { MarkdownEditor } from "../../components/editor";
 import { useBeforeunload } from "react-beforeunload";
+import axios from "axios";
 
 interface Props {
   postId: number;
@@ -62,18 +63,16 @@ const Create: NextPage<Props> = ({ postId, post }) => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const result = await fetch(`/api/post/${postId}`, {
+      const result = await axios({
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
+        url: `/api/post/${postId}`,
+        data: {
           title,
           subTitle,
           body,
           state,
           place,
-        }),
+        },
       });
 
       if (result.status === 200) {
