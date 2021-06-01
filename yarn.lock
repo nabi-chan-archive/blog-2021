@@ -4616,6 +4616,11 @@ hast-util-parse-selector@^2.0.0:
   resolved "https://registry.yarnpkg.com/hast-util-parse-selector/-/hast-util-parse-selector-2.2.5.tgz#d57c23f4da16ae3c63b3b6ca4616683313499c3a"
   integrity sha512-7j6mrk/qqkSehsM92wQjdIgWM2/BW61u/53G6xmC8i1OmEdKLHbk419QKQUjz6LglWsfqoiHmyMRkP1BGjecNQ==
 
+hast-util-whitespace@^1.0.0:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/hast-util-whitespace/-/hast-util-whitespace-1.0.4.tgz#e4fe77c4a9ae1cb2e6c25e02df0043d0164f6e41"
+  integrity sha512-I5GTdSfhYfAPNztx2xJRQpG8cuDSNt599/7YUn7Gx/WxNMsG+a835k97TDkFgk123cwjfwINaZknkKkphx/f2A==
+
 hastscript@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/hastscript/-/hastscript-6.0.0.tgz#e8768d7eac56c3fdeac8a92830d58e811e5bf640"
@@ -7772,6 +7777,14 @@ remark-rehype@^8.0.0:
   integrity sha512-EbCu9kHgAxKmW1yEYjx3QafMyGY3q8noUbNUI5xyKbaFP89wbhDrKxyIQNukNYthzjNHZu6J7hwFg7hRm1svYA==
   dependencies:
     mdast-util-to-hast "^10.2.0"
+
+remark-unwrap-images@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/remark-unwrap-images/-/remark-unwrap-images-2.0.0.tgz#65134065e3605c64a37d22ab665058fc5286920f"
+  integrity sha512-uehiJU5U1ZNQxTKUlAKOQhVyFsc+9WWvamkuoF3ILdMpASHwA1JbzTOZcRWv+annYfDWuPSuoZAWdt1r0SlrfQ==
+  dependencies:
+    hast-util-whitespace "^1.0.0"
+    unist-util-visit "^2.0.0"
 
 remove-trailing-separator@^1.0.1:
   version "1.1.0"

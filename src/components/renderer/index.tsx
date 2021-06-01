@@ -3,6 +3,12 @@ import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { prism } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { Components } from "react-markdown/src/ast-to-react";
+// TODO: Remark로 렌더러 옮기기
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import unwrapImages from "remark-unwrap-images";
+
+const remarkPlugins = [unwrapImages];
 
 const components: Components = {
   code({ className, children }) {
@@ -29,5 +35,9 @@ interface Props {
 }
 
 export const Markdown = ({ markdown }: Props) => {
-  return <ReactMarkdown components={components}>{markdown}</ReactMarkdown>;
+  return (
+    <ReactMarkdown remarkPlugins={remarkPlugins} components={components}>
+      {markdown}
+    </ReactMarkdown>
+  );
 };
