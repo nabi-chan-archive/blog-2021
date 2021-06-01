@@ -39,6 +39,15 @@ const Content = styled.article`
   p {
     line-height: 1.5;
   }
+
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  ul {
+    list-style-position: inside;
+  }
 `;
 
 export default Content;
