@@ -1,6 +1,9 @@
 import { createGlobalStyle } from "styled-components";
+import nProgress from "./nProgress";
 
 const GlobalStyle = createGlobalStyle`
+  ${nProgress}
+  
   * {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
