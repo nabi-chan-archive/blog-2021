@@ -1,22 +1,16 @@
 import prisma from "../../../lib/prisma";
-import { NextApiHandler } from "next";
-import { getSession } from "next-auth/client";
 import { Post } from "../../../constants/type";
+import withSession, {
+  NextApiHandlerWithSession,
+} from "../../../lib/middlewares/withSession";
 
-const handler: NextApiHandler = async (req, res) => {
+const handler: NextApiHandlerWithSession = async (req, res) => {
   const {
     method,
     query: { postId },
     body,
   } = req;
-  const session = await getSession({ req });
-  const email = session?.user.email;
-
-  // 로그인되어있지 않음
-  if (!session || !email) {
-    res.status(401).end();
-    return;
-  }
+  const { email } = req.auth;
 
   switch (method) {
     case "DELETE":
@@ -65,4 +59,4 @@ async function updatePost(
   });
 }
 
-export default handler;
+export default withSession(handler);

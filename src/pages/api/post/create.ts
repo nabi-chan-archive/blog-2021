@@ -1,8 +1,9 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../../lib/prisma";
-import { getSession } from "next-auth/client";
+import withSession, {
+  NextApiHandlerWithSession,
+} from "../../../lib/middlewares/withSession";
 
-const postCreate = async (req: NextApiRequest, res: NextApiResponse) => {
+const postCreate: NextApiHandlerWithSession = async (req, res) => {
   try {
     if (req.method !== "POST") {
       res.status(405).json({});
@@ -10,7 +11,7 @@ const postCreate = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     const { title, subTitle, place, body, state } = req.body;
-    const session = await getSession({ req });
+    const { email } = req.auth;
 
     await prisma.post.create({
       data: {
@@ -21,7 +22,7 @@ const postCreate = async (req: NextApiRequest, res: NextApiResponse) => {
         state,
         author: {
           connect: {
-            email: session?.user?.email as string,
+            email,
           },
         },
       },
@@ -34,4 +35,4 @@ const postCreate = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-export default postCreate;
+export default withSession(postCreate);
