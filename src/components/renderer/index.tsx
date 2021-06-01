@@ -14,6 +14,14 @@ const components: Components = {
       </SyntaxHighlighter>
     );
   },
+  img({ src, alt }) {
+    return (
+      <figure>
+        <img src={String(src)} alt={String(alt)} />
+        <figcaption>{String(alt)}</figcaption>
+      </figure>
+    );
+  },
 };
 
 interface Props {
