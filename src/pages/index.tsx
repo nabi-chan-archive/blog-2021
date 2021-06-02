@@ -6,6 +6,8 @@ import PostCard from "../components/PostCard";
 import Header from "../components/Header";
 import { Container } from "react-bootstrap";
 import { Mixpanel, TRACK } from "../lib/mixpanel";
+import PLOGMeta, { titleTemplate } from "../components/Head";
+import Head from "next/head";
 
 interface Props {
   posts: Post[];
@@ -42,6 +44,16 @@ const Home: NextPage<Props> = ({ posts }) => {
 
   return (
     <>
+      <Head>
+        <title>{titleTemplate("PINOT 기술 블로그")}</title>
+        <PLOGMeta
+          title={"PINOT 기술 블로그"}
+          description={"PINOT 기술 블로그"}
+          author={"PINOT. KIM."}
+          url={"https://pinot.kim"}
+          image={""}
+        />
+      </Head>
       <Header />
       <Container>
         {posts.map((post) => (
