@@ -13,6 +13,8 @@ import { useRouter } from "next/router";
 import { Markdown } from "../../components/renderer";
 import { Mixpanel, TRACK } from "../../lib/mixpanel";
 import axios from "../../lib/axios";
+import Head from "next/head";
+import PLOGMeta, { OgArticle, titleTemplate } from "../../components/Head";
 
 interface Props {
   postId: number;
@@ -79,6 +81,27 @@ const Detail: NextPage<Props> = ({ postId, post }) => {
 
   return (
     <>
+      <Head>
+        <title>{titleTemplate(post.title)}</title>
+        <PLOGMeta
+          title={post.title}
+          description={post.subTitle}
+          author={"PINOT. KIM."}
+          image={""}
+          url={`https://pinot.kim/detail/${post.id}`}
+        />
+        <OgArticle
+          title={post.title}
+          description={post.subTitle}
+          author={"PINOT. KIM."}
+          image={""}
+          url={`https://pinot.kim/detail/${post.id}`}
+          publishedDate={post.createdAt}
+          modifiedDate={post.createdAt}
+          section={"Technical"}
+          tags={[]}
+        />
+      </Head>
       <Header />
       <Container>
         <PostHeader>
