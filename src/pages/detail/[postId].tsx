@@ -14,7 +14,11 @@ import { Markdown } from "../../components/renderer";
 import { Mixpanel, TRACK } from "../../lib/mixpanel";
 import axios from "../../lib/axios";
 import Head from "next/head";
-import PLOGMeta, { OgArticle, titleTemplate } from "../../components/Head";
+import PLOGMeta, {
+  OgArticle,
+  TwitterCard,
+  titleTemplate,
+} from "../../components/Head";
 
 interface Props {
   postId: number;
@@ -100,6 +104,14 @@ const Detail: NextPage<Props> = ({ postId, post }) => {
           modifiedDate={post.createdAt}
           section={"Technical"}
           tags={[]}
+        />
+        <TwitterCard
+          url={`https://pinot.kim/detail/${post.id}`}
+          large={true}
+          title={post.title}
+          description={post.subTitle}
+          image={""}
+          imageAlt={""}
         />
       </Head>
       <Header />
