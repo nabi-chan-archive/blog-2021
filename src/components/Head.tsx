@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import React from "react";
 
 // SITE ROOT
@@ -76,6 +77,15 @@ export const OgArticle = ({
   section,
   tags,
 }: OgArticleProps) => {
+  publishedDate = format(
+    new Date(publishedDate),
+    `yyyy-MM-dd'T'HH:mm:ss.000+09:00`,
+  );
+  modifiedDate = format(
+    new Date(modifiedDate),
+    `yyyy-MM-dd'T'HH:mm:ss.000+09:00`,
+  );
+
   return (
     <>
       <meta property="og:type" content="article" />
