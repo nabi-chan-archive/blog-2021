@@ -9,6 +9,9 @@ import _nProgress from "nprogress";
 
 const nProgress = _nProgress.configure({
   showSpinner: false,
+  minimum: 0.15,
+  trickleRate: 0.3,
+  trickleSpeed: 200,
 });
 
 Router.events.on("routeChangeStart", (url) => {
