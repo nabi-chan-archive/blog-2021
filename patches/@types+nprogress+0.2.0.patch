@@ -1,0 +1,12 @@
+diff --git a/node_modules/@types/nprogress/index.d.ts b/node_modules/@types/nprogress/index.d.ts
+index 8da7f53..8b34894 100644
+--- a/node_modules/@types/nprogress/index.d.ts
++++ b/node_modules/@types/nprogress/index.d.ts
+@@ -11,6 +11,7 @@ declare namespace nProgress {
+         easing: string;
+         speed: number;
+         trickle: boolean;
++        trickleRate: number;
+         trickleSpeed: number;
+         showSpinner: boolean;
+         parent: string;
