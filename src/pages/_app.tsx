@@ -11,7 +11,7 @@ const nProgress = _nProgress.configure({
   showSpinner: false,
   minimum: 0.15,
   trickleRate: 0.3,
-  trickleSpeed: 200,
+  trickleSpeed: 500,
 });
 
 Router.events.on("routeChangeStart", (url) => {
